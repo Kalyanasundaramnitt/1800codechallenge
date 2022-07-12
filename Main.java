@@ -3,7 +3,7 @@ import java.io.*;
 @SuppressWarnings("ALL")
 public class Main {
 
-   public static BufferedReader bufferedReader;
+    public static BufferedReader bufferedReader;
 
 
 
@@ -11,7 +11,7 @@ public class Main {
         createUserInterfaceAndGetInput();
 
 
-       // System.out.println("Hello world!");
+        // System.out.println("Hello world!");
 
     }
 
@@ -45,7 +45,7 @@ public class Main {
             case "2" -> getInputWriteInSelectedFile();
             case "3" -> readFromPhoneNumbersTextFile();
             case "4" -> System.out.print("Exiting");
-                //readFromDictionaryTextFile();
+            //readFromDictionaryTextFile();
 
             //System.out.print("Exiting");
 
@@ -145,18 +145,19 @@ public class Main {
 
             if(encodedFirstHalfWord.equals("no matches") || encodedSecondHalfWord.equals("no matches")){
                 encodedWord = "no matches";
-               // System.out.println(encodedWord);
+                // System.out.println(encodedWord);
             }
             else{
+
                 encodedWord = encodedFirstHalfWord + "-"+ encodedSecondHalfWord;
-               // System.out.println(encodedWord);
+                // System.out.println(encodedWord);
 
 
             }
 
         }
         else{
-           // System.out.println(encodedWord);
+            // System.out.println(encodedWord);
 
         }
         return encodedWord;
@@ -172,107 +173,118 @@ public class Main {
         String phnNumber_FirstHalf;String phnNumber_SecondHalf = "";
         phnNumberLength = phoneNumber.length();
 
-            encodedFirstHalfWord = "";
-            encodedSecondHalfWord ="";
+        encodedFirstHalfWord = "";
+        encodedSecondHalfWord ="";
 
-            int countToRemoveDigits_PhnNumber = 1;
-            phnNumberLength = phoneNumber.length();
-
-
-            while ((encodedFirstHalfWord.equals("") || encodedFirstHalfWord.equals("no matches")) || (encodedSecondHalfWord.equals("") || encodedSecondHalfWord.equals("no matches"))) {
-                if(countToRemoveDigits_PhnNumber <= (phnNumberLength)) {
-
-                    phnNumber_FirstHalf = phoneNumber.substring(0, (phnNumberLength - countToRemoveDigits_PhnNumber));
-                    if(phnNumber_FirstHalf.equals("")){
-                        encodedFirstHalfWord = "";
-
-                    }
-                    else{
-                        encodedFirstHalfWord = Phonenumberencoder.get_encoded_Word(phnNumber_FirstHalf);
-
-                    }
+        int countToRemoveDigits_PhnNumber = 1;
+        phnNumberLength = phoneNumber.length();
 
 
-                    if(countToRemoveDigits_PhnNumber ==1 ){
-                        phnNumber_SecondHalf = phoneNumber.substring((phnNumberLength - countToRemoveDigits_PhnNumber), phnNumberLength);
+        while ((encodedFirstHalfWord.equals("") || encodedFirstHalfWord.equals("no matches")) || (encodedSecondHalfWord.equals("") || encodedSecondHalfWord.equals("no matches"))) {
+            if(countToRemoveDigits_PhnNumber <= (phnNumberLength)) {
 
-                        if(!encodedFirstHalfWord.equals("no matches") && (!encodedFirstHalfWord.equals(""))){
-
-                            encodedWord = encodedFirstHalfWord + "-"+ phnNumber_SecondHalf ;
-
-                            //System.out.println(encodedWord);
-
-                            break;
-
-                        }
-                        else{
-                            encodedFirstHalfWord =  getEncodedWordUsingCase2(phnNumber_FirstHalf);
-                            if(!encodedFirstHalfWord.equals("no matches") && (!encodedFirstHalfWord.equals(""))) {
-
-                                encodedWord = encodedFirstHalfWord + "-" + phnNumber_SecondHalf;
-                               // System.out.println(encodedWord);
-                                break;
-                            }
-                            else{
-                                countToRemoveDigits_PhnNumber++;
-
-                            }
-
-                        }
-
-                    }
-                    else{
-                        String firstDigit_Of_PhnNumberSecondHalf ;
-
-                        phnNumber_SecondHalf = phoneNumber.substring((phnNumberLength - countToRemoveDigits_PhnNumber), phnNumberLength);
-
-                        firstDigit_Of_PhnNumberSecondHalf = phnNumber_SecondHalf.substring(0,1);
-                        phnNumber_SecondHalf = phnNumber_SecondHalf.substring(1, phnNumber_SecondHalf.length());
-                        encodedSecondHalfWord = Phonenumberencoder.get_encoded_Word(phnNumber_SecondHalf);
-
-                        if(countToRemoveDigits_PhnNumber==phnNumberLength){
-                            if (!encodedSecondHalfWord.equals("") && !encodedSecondHalfWord.equals("no matches")) {
-
-
-                                encodedWord = firstDigit_Of_PhnNumberSecondHalf + "-" + encodedSecondHalfWord;
-                               // System.out.println(encodedWord);
-
-                                break;
-                            }
-                            else{
-                                encodedSecondHalfWord =  getEncodedWordUsingCase2(phnNumber_SecondHalf);
-                                encodedWord = firstDigit_Of_PhnNumberSecondHalf + "-" + encodedSecondHalfWord;
-                               // System.out.println(encodedWord);
-                                break;
-                            }
-                        }
-                        else {
-
-
-                            if ((!encodedFirstHalfWord.equals("") && !encodedFirstHalfWord.equals("no matches")) && (!encodedSecondHalfWord.equals("") && !encodedSecondHalfWord.equals("no matches"))) {
-
-                                encodedWord = encodedFirstHalfWord + "-" + firstDigit_Of_PhnNumberSecondHalf + "-" + encodedSecondHalfWord;
-                               // System.out.println(encodedWord);
-
-                                break;
-                            }
-                        }
-                    }
-
-
-
-                    countToRemoveDigits_PhnNumber++;
+                phnNumber_FirstHalf = phoneNumber.substring(0, (phnNumberLength - countToRemoveDigits_PhnNumber));
+                if(phnNumber_FirstHalf.equals("")){
+                    encodedFirstHalfWord = "";
 
                 }
                 else{
-                    encodedWord ="no matches";
-                   // System.out.println(encodedWord);
+                    encodedFirstHalfWord = Phonenumberencoder.get_encoded_Word(phnNumber_FirstHalf);
 
-                    break;
                 }
+
+
+                if(countToRemoveDigits_PhnNumber ==1 ){
+                    phnNumber_SecondHalf = phoneNumber.substring((phnNumberLength - countToRemoveDigits_PhnNumber), phnNumberLength);
+
+                    if(!encodedFirstHalfWord.equals("no matches") && (!encodedFirstHalfWord.equals(""))){
+
+                        encodedWord = encodedFirstHalfWord + "-"+ phnNumber_SecondHalf ;
+
+
+
+                        break;
+
+                    }
+                    else{
+                        encodedFirstHalfWord =  getEncodedWordUsingCase2(phnNumber_FirstHalf);
+                        if(!encodedFirstHalfWord.equals("no matches") && (!encodedFirstHalfWord.equals(""))) {
+
+                            encodedWord = encodedFirstHalfWord + "-" + phnNumber_SecondHalf;
+
+                            break;
+                        }
+                        else{
+                            encodedWord = "no matches";
+                            countToRemoveDigits_PhnNumber++;
+
+                        }
+
+                    }
+
+                }
+                else{
+                    String firstDigit_Of_PhnNumberSecondHalf ;
+
+                    phnNumber_SecondHalf = phoneNumber.substring((phnNumberLength - countToRemoveDigits_PhnNumber), phnNumberLength);
+
+                    firstDigit_Of_PhnNumberSecondHalf = phnNumber_SecondHalf.substring(0,1);
+                    phnNumber_SecondHalf = phnNumber_SecondHalf.substring(1, phnNumber_SecondHalf.length());
+                    encodedSecondHalfWord = Phonenumberencoder.get_encoded_Word(phnNumber_SecondHalf);
+
+                    if(countToRemoveDigits_PhnNumber==phnNumberLength){
+                        if (!encodedSecondHalfWord.equals("") && !encodedSecondHalfWord.equals("no matches")) {
+
+
+                            encodedWord = firstDigit_Of_PhnNumberSecondHalf + "-" + encodedSecondHalfWord;
+
+                            break;
+                        }
+                        else{
+                            encodedSecondHalfWord =  getEncodedWordUsingCase2(phnNumber_SecondHalf);
+                            if ((!encodedSecondHalfWord.equals("") && !encodedSecondHalfWord.equals("no matches"))) {
+
+                                encodedWord = firstDigit_Of_PhnNumberSecondHalf + "-" + encodedSecondHalfWord;
+                                // System.out.println(encodedWord);
+                                break;
+                            }
+                            else{
+                                encodedWord = "no matches";
+
+                            }
+                        }
+                    }
+                    else {
+
+
+                        if ((!encodedFirstHalfWord.equals("") && !encodedFirstHalfWord.equals("no matches")) && (!encodedSecondHalfWord.equals("") && !encodedSecondHalfWord.equals("no matches"))) {
+
+                            encodedWord = encodedFirstHalfWord + "-" + firstDigit_Of_PhnNumberSecondHalf + "-" + encodedSecondHalfWord;
+
+                            break;
+                        }
+                        else{
+                            encodedWord = "no matches";
+
+                        }
+
+                    }
+                }
+
+
+
+                countToRemoveDigits_PhnNumber++;
+
             }
-       return encodedWord;
+            else{
+                encodedWord ="no matches";
+                // System.out.println(encodedWord);
+
+                break;
+            }
         }
+        return encodedWord;
+    }
 
 
 
@@ -294,7 +306,7 @@ public class Main {
         switch (userInput) {
             case "1" -> {
                 String wordUserTyped = getPhoneNumberFromUser();
-
+                wordUserTyped = wordUserTyped.replaceAll("[^0-9]","");
                 if ((wordUserTyped.matches("[0-9]+")  && (wordUserTyped.length()<=10))){
 
                     writeNewPhoneNumberInPhoneNumberFile(wordUserTyped);
@@ -357,7 +369,7 @@ public class Main {
     private static void writeNewPhoneNumberInPhoneNumberFile(String phoneNumber) {
         File file_toWrite  = new File((config_Helper.phoneNumbers_FileName));
 
-      //  File file_toWrite  = new File(Objects.requireNonNull(Main.class.getResource(config_Helper.phoneNumbers_FileName)).getPath());
+        //  File file_toWrite  = new File(Objects.requireNonNull(Main.class.getResource(config_Helper.phoneNumbers_FileName)).getPath());
 
         FileWriter fr = null;
         BufferedWriter buffer = null;
@@ -413,6 +425,7 @@ public class Main {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        wordUserTyped = wordUserTyped.replaceAll("[^10-9]","");
 
         if ((wordUserTyped.matches("[0-9]+")  && (wordUserTyped.length()<=10))){
 
