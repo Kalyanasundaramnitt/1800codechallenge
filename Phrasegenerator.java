@@ -56,21 +56,18 @@ public class Phrasegenerator {
      // System.out.println("possible_FirstLettersOfPhrase "+possible_FirstLettersOfPhrase);
      // System.out.println("set_of_Possible_PhrasesFrom_Dictionary "+set_of_Possible_PhrasesFrom_Dictionary);
 
-            for(int k =0 ;k < possible_FirstLettersOfPhrase.size(); k++) {
-                String letterFrompossible_FirstLettersOfPhrase = possible_FirstLettersOfPhrase.get(k);
-             // System.out.println("letterFrompossible_FirstLettersOfPhrase "+letterFrompossible_FirstLettersOfPhrase);
-                String combinedletters ="";
+        for(int k =0 ;k < possible_FirstLettersOfPhrase.size(); k++) {
+            String letterFrompossible_FirstLettersOfPhrase = possible_FirstLettersOfPhrase.get(k);
+         // System.out.println("letterFrompossible_FirstLettersOfPhrase "+letterFrompossible_FirstLettersOfPhrase);
+            String combinedletters ="";
 
-                for(int phnNumber_iterator =1 ; phnNumber_iterator<phoneNumber_inArray.size();
-                                                                          phnNumber_iterator++){
+            for(int phnNumber_iterator =1 ; phnNumber_iterator<phoneNumber_inArray.size();
+                phnNumber_iterator++){
                 String digits_in_phonenumber ="" ;String possible_letters = "";
                 digits_in_phonenumber = phoneNumber_inArray.get(phnNumber_iterator);
                 if(filtered_set_of_Possible_Phrases.size()>0){
-
-
                     set_of_Possible_Phrases = filtered_set_of_Possible_Phrases;
                     set_of_Possible_PhrasesKeyCombination = filtered_set_of_Possible_PhrasesKeyCombination;
-
                 }
                 possible_letters = allocatedAlphabetsHashmap.get(digits_in_phonenumber);
              // System.out.println("possible_letters "+possible_letters);
@@ -83,125 +80,95 @@ public class Phrasegenerator {
                 }
 
 
-                    for (int i = 0; i < possible_letters.length(); i++) {
-                        String letter = String.valueOf(possible_letters.charAt(i));
-                     // System.out.println("letter "+letter);
+                for (int i = 0; i < possible_letters.length(); i++) {
+                    String letter = String.valueOf(possible_letters.charAt(i));
+                 // System.out.println("letter "+letter);
 
-                        if(phnNumber_iterator==1){
+                    if(phnNumber_iterator==1){
 
                         List<String> possiblePhrasesArrayFromHashmap = new ArrayList<>();
 
 
-                            possiblePhrasesArrayFromHashmap = set_of_Possible_PhrasesFrom_Dictionary.get(letterFrompossible_FirstLettersOfPhrase);
+                        possiblePhrasesArrayFromHashmap = set_of_Possible_PhrasesFrom_Dictionary.get(letterFrompossible_FirstLettersOfPhrase);
 
-                            combinedletters = letterFrompossible_FirstLettersOfPhrase+letter;
-                         // System.out.println("combinedletters "+combinedletters);
-                         // System.out.println("possiblePhrasesArrayFromHashmap "+possiblePhrasesArrayFromHashmap);
-
+                        combinedletters = letterFrompossible_FirstLettersOfPhrase+letter;
+                     // System.out.println("combinedletters "+combinedletters);
+                     // System.out.println("possiblePhrasesArrayFromHashmap "+possiblePhrasesArrayFromHashmap);
 
                         List<String> possiblePhrasesArray = new ArrayList<>();
-                            if(possiblePhrasesArrayFromHashmap!=null && !possiblePhrasesArrayFromHashmap.isEmpty()) {
+                        if(possiblePhrasesArrayFromHashmap!=null && !possiblePhrasesArrayFromHashmap.isEmpty()) {
 
-                                for (int m = 0; m < possiblePhrasesArrayFromHashmap.size(); m++) {
-                                    String possiblePhrasefromArray = possiblePhrasesArrayFromHashmap.get(m);
-                                    if (String.valueOf(possiblePhrasefromArray).toUpperCase().startsWith(combinedletters)) {
+                            for (int m = 0; m < possiblePhrasesArrayFromHashmap.size(); m++) {
+                                String possiblePhrasefromArray = possiblePhrasesArrayFromHashmap.get(m);
+                                if (String.valueOf(possiblePhrasefromArray).toUpperCase().startsWith(combinedletters)) {
 
-                                        if (!possiblePhrasesArray.contains(possiblePhrasefromArray)) {
-                                            possiblePhrasesArray.add(possiblePhrasefromArray);
+                                    if (!possiblePhrasesArray.contains(possiblePhrasefromArray)) {
+                                        possiblePhrasesArray.add(possiblePhrasefromArray);
 
-                                        }
-                                        //Hereeeeeeeee
-                                        if (!set_of_Possible_PhrasesKeyCombination.contains(combinedletters)) {
-
-                                            set_of_Possible_PhrasesKeyCombination.add(combinedletters);
-                                            set_of_Possible_Phrases.put(combinedletters, possiblePhrasesArray);
-
-                                        }
-                                     // System.out.println("set_of_Possible_Phrases "+set_of_Possible_Phrases);
-                                     // System.out.println("set_of_Possible_PhrasesKeyCombination "+set_of_Possible_PhrasesKeyCombination);
                                     }
+                                    //Hereeeeeeeee
+                                    if (!set_of_Possible_PhrasesKeyCombination.contains(combinedletters)) {
+
+                                        set_of_Possible_PhrasesKeyCombination.add(combinedletters);
+                                        set_of_Possible_Phrases.put(combinedletters, possiblePhrasesArray);
+
+                                    }
+                                 // System.out.println("set_of_Possible_Phrases "+set_of_Possible_Phrases);
+                                 // System.out.println("set_of_Possible_PhrasesKeyCombination "+set_of_Possible_PhrasesKeyCombination);
                                 }
                             }
-
                         }
-                        else{
-                         // System.out.println("set_of_Possible_PhrasesKeyCombination "+set_of_Possible_PhrasesKeyCombination);
-                            for(int l =0 ;l< set_of_Possible_PhrasesKeyCombination.size(); l++) {
-                                String possiblePhrasesKey = set_of_Possible_PhrasesKeyCombination.get(l);
-                             // System.out.println("possiblePhrasesKey "+possiblePhrasesKey);
 
-                                List<String> possiblePhrasesArrayFromHashmap = new ArrayList<>();
+                    }
+                    else{
+                     // System.out.println("set_of_Possible_PhrasesKeyCombination "+set_of_Possible_PhrasesKeyCombination);
+                        for(int l =0 ;l< set_of_Possible_PhrasesKeyCombination.size(); l++) {
+                            String possiblePhrasesKey = set_of_Possible_PhrasesKeyCombination.get(l);
+                         // System.out.println("possiblePhrasesKey "+possiblePhrasesKey);
 
-
-                                possiblePhrasesArrayFromHashmap = set_of_Possible_Phrases.get(possiblePhrasesKey);
-                                combinedletters = possiblePhrasesKey + letter;
-                             // System.out.println("combinedletters "+combinedletters);
+                            List<String> possiblePhrasesArrayFromHashmap = new ArrayList<>();
 
 
-                                List<String> possiblePhrasesArray = new ArrayList<>();
-                                if (possiblePhrasesArrayFromHashmap != null && !possiblePhrasesArrayFromHashmap.isEmpty()) {
-                                    for (int m = 0; m < possiblePhrasesArrayFromHashmap.size(); m++) {
-                                        String possiblePhrasefromArray = possiblePhrasesArrayFromHashmap.get(m);
+                            possiblePhrasesArrayFromHashmap = set_of_Possible_Phrases.get(possiblePhrasesKey);
+                            combinedletters = possiblePhrasesKey + letter;
+                         // System.out.println("possiblePhrasesKey + combinedletters "+combinedletters);
 
-                                        if (String.valueOf(possiblePhrasefromArray).toUpperCase().startsWith(combinedletters)) {
-                                            if (!possiblePhrasesArray.contains(possiblePhrasefromArray)) {
-                                                possiblePhrasesArray.add(possiblePhrasefromArray);
+                            List<String> possiblePhrasesArray = new ArrayList<>();
+                            if (possiblePhrasesArrayFromHashmap != null && !possiblePhrasesArrayFromHashmap.isEmpty()) {
+                                for (int m = 0; m < possiblePhrasesArrayFromHashmap.size(); m++) {
+                                    String possiblePhrasefromArray = possiblePhrasesArrayFromHashmap.get(m);
 
-                                            }
-                                            //hereeee
-                                            if (!filtered_set_of_Possible_PhrasesKeyCombination.contains(combinedletters)) {
-
-                                                filtered_set_of_Possible_Phrases.put(combinedletters, possiblePhrasesArray);
-                                                filtered_set_of_Possible_PhrasesKeyCombination.add(combinedletters);
-                                            }
-                                         // System.out.println("filtered_set_of_Possible_Phrases "+filtered_set_of_Possible_Phrases);
-                                         // System.out.println("filtered_set_of_Possible_PhrasesKeyCombination "+filtered_set_of_Possible_PhrasesKeyCombination);
-
+                                    if (String.valueOf(possiblePhrasefromArray).toUpperCase().startsWith(combinedletters)) {
+                                        if (!possiblePhrasesArray.contains(possiblePhrasefromArray)) {
+                                            possiblePhrasesArray.add(possiblePhrasefromArray);
                                         }
-
-                                        /*else {
-
-                                            if (combinedletters.length() == j + 1) {
-                                                if (!filtered_set_of_Possible_PhrasesKeyCombination.contains(combinedletters)) {
-
-                                                    filtered_set_of_Possible_Phrases.put(combinedletters, possiblePhrasesArray);
-                                                    filtered_set_of_Possible_PhrasesKeyCombination.add(combinedletters);
-                                                }
-                                            }
-                                        }
-
-                                         */
-
-
-                                    }
-                                }
-                                /*else {
-
-                                    if (combinedletters.length() == j + 1) {
+                                        //hereeee
                                         if (!filtered_set_of_Possible_PhrasesKeyCombination.contains(combinedletters)) {
 
                                             filtered_set_of_Possible_Phrases.put(combinedletters, possiblePhrasesArray);
                                             filtered_set_of_Possible_PhrasesKeyCombination.add(combinedletters);
                                         }
+                                     // System.out.println("filtered_set_of_Possible_Phrases "+filtered_set_of_Possible_Phrases);
+                                     // System.out.println("filtered_set_of_Possible_PhrasesKeyCombination "+filtered_set_of_Possible_PhrasesKeyCombination);
+
                                     }
+
                                 }
-
-                                 */
-
-
                             }
 
                         }
-                    }
-
-
-                     if(phoneNumber_inArray.size()-1 == phnNumber_iterator){
-
-                         encodedWord  = getencodedPhrase_fromFilteredArray(filtered_set_of_Possible_Phrases,filtered_set_of_Possible_PhrasesKeyCombination,phoneNumber_inArray);
 
                     }
                 }
+
+
+                if(phoneNumber_inArray.size()-1 == phnNumber_iterator){
+
+                    encodedWord  = getencodedPhrase_fromFilteredArray(filtered_set_of_Possible_Phrases,filtered_set_of_Possible_PhrasesKeyCombination,phoneNumber_inArray);
+
+                }
             }
+        }
         return encodedWord;
     }
 
@@ -221,10 +188,6 @@ public class Phrasegenerator {
             List<String> set_of_possible_phrases_Local = new ArrayList<>();
             List<String>  pharseKey_letters_inArray = new ArrayList<>();
             List<String>  possible_letters_inArray = new ArrayList<>();
-
-
-
-
 
             if(phraseKey.length() == total_PhnNumbr_count){
                 set_of_possible_phrases_Local = set_of_possible_phrases.get(phraseKey);
